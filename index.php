@@ -24,6 +24,8 @@
 </head>
 
 <body class="vh-100 d-flex flex-column">
+    <header><?php include "components/layouts/header.php"?></header>
+
     <div class="container p-5 flex-grow-1">
         <div class="d-flex flex-column justify-content-center align-items-center h-100">
             <h1 class="text-center">Log in</h1>
@@ -37,7 +39,7 @@
                         <label for="passwordFormInput" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordFormInput">
                     </div>
-                    <button type="submit" class="btn btn-primary">login</button>
+                    <button type="submit" class="btn btn-primary">Log in</button>
                     <small>New user?</small>
                     <a href="signup.php">Registration</a>
                 </form>

@@ -7,8 +7,8 @@
     <title>login</title>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
-        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,7 +24,7 @@
 </head>
 
 <body class="vh-100 d-flex flex-column">
-    <header><?php include "components/layouts/header.php"?></header>
+    <header><?php include "components/layouts/header.php" ?></header>
 
     <div class="container p-5 flex-grow-1">
         <div class="d-flex flex-column justify-content-center align-items-center h-100">

@@ -53,6 +53,30 @@
         </div>
     </footer>
 
+    <script>
+        $(document).ready(function () {
+            $('form').on("submit", function () {
+                event.preventDefault();
+                const data = {
+                    login: $("#nameFormInput").val(),
+                    password: $("#passwordFormInput").val(),
+                };
+                $.ajax({
+                    url: "/api/auth/",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    data: JSON.stringify(data),
+                })
+                    .done(response => {
+                        console.log(response);
+                    })
+                    .fail((xhr, status, error) => { console.log(xhr.status) })
+            })
+        })
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

@@ -14,3 +14,9 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .navbar-brand img{
+        width: 50px;
+    }
+</style>

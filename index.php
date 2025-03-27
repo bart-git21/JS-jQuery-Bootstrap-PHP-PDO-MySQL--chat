@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="static/style/style.css">
 </head>
 
-<body class="vh-100">
-    <div class="container h-100 p-5">
-        <div class="d-flex flex-column  justify-content-center align-items-center h-100">
+<body class="vh-100 d-flex flex-column">
+    <div class="container p-5 flex-grow-1">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
             <h1 class="text-center">Log in</h1>
             <div class="w-400 h-100 d-flex align-items-center">
                 <form class="w-100 p-5 rounded shadow">
@@ -44,6 +44,12 @@
             </div>
         </div>
     </div>
+
+    <footer class="p-2">
+        <div class="text-center">
+            Icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

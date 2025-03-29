@@ -8,6 +8,14 @@ function getUri($path): string
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $requestUri = getUri("user");
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!$data) {
+    http_response_code(400);
+    echo json_encode(["error" => "Invalid incomig JSON"]);
+    return;
+}
+
 header("Content-Type: application/json");
 
 switch ($requestMethod) {
@@ -21,13 +29,6 @@ switch ($requestMethod) {
         //          default: "user",
         //     }
         // }
-        if ($json) {
-            $user = json_decode($json, true);
-        } else {
-            echo json_encode(["error" => "Invalid JSON"]);
-            http_response_code(400);
-            return;
-        }
 
         $userName = isset($user['login']) ? htmlspecialchars($user['login'], ENT_QUOTES, "UTF-8") : "";
         $userPass = isset($user['password']) ? htmlspecialchars($user['password'], ENT_QUOTES, "UTF-8") : "";

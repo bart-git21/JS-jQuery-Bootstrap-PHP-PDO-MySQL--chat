@@ -1,6 +1,13 @@
 <?php
 include "../db/connection.php";
+function getUri($path): string
+{
+    $urlPath = parse_url(trim($_SERVER['REQUEST_URI']), PHP_URL_PATH);
+    return str_replace("/api/$path", "", $urlPath);
+}
+
 $requestMethod = $_SERVER["REQUEST_METHOD"];
+$requestUri = getUri("user");
 header("Content-Type: application/json");
 
 switch ($requestMethod) {

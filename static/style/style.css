@@ -1,3 +1,12 @@
 .w-400 {
-    width: min(400px, 100%);
+  width: min(400px, 100%);
+}
+
+.invisibl {
+  display: none;
+}
+
+.visibl {
+
+  display: block;
 }

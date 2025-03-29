@@ -97,7 +97,7 @@
                     })
                     .fail((xhr, status, error) => {
                         console.log(xhr.status);
-                        console.log(xhr.responseJSON.error && xhr.responseJSON.error);
+                        xhr.responseJSON.error && console.log(xhr.responseJSON.error);
                     })
             })
         })

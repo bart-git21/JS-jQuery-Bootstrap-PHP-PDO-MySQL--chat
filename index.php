@@ -42,9 +42,13 @@
                         <label for="passwordFormInput" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordFormInput">
                     </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    <small>New user?</small>
-                    <a href="pages/signup.php">Registration</a>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <small>New user?</small>
+                            <a id="signUpBtn" href="#">Registration</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -76,6 +80,25 @@
                         console.log(response);
                     })
                     .fail((xhr, status, error) => { console.log(xhr.status) })
+            })
+            $("#signUpBtn").on("click", function () {
+                const newUser = {
+                    login: $("#nameFormInput").val(),
+                    password: $("#passwordFormInput").val()
+                };
+                $.ajax({
+                    url: "/api/user/",
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    data: JSON.stringify(newUser),
+                })
+                    .done(response => {
+                        console.log(response);
+                    })
+                    .fail((xhr, status, error) => {
+                        console.log(xhr.status);
+                        console.log(xhr.responseJSON.error);
+                    })
             })
         })
     </script>

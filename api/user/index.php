@@ -9,6 +9,10 @@ switch ($requestMethod) {
         // interface $user {
         //     login: string,
         //     password: string,
+        //     role: {
+        //          type: string,
+        //          default: "user",
+        //     }
         // }
         if ($json) {
             $user = json_decode($json, true);

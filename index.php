@@ -21,6 +21,7 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="static/style/style.css">
+
 </head>
 
 <body class="vh-100 d-flex flex-column">
@@ -41,6 +42,9 @@
                     <div class="mb-3">
                         <label for="passwordFormInput" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordFormInput">
+                    </div>
+                    <div id="alertMessage" class="alert alert-warning invisibl" role="alert">
+                        A simple warning alert—check it out!
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
@@ -64,17 +68,20 @@
         $(document).ready(function () {
             (function clearForm() {
                 $("#nameFormInput").val("");
+                $("#alertMessage").removeClass('visibl');
             })()
 
             $('form').on("submit", function () {
                 event.preventDefault();
+                $("#alertMessage").removeClass('visibl');
                 const data = {
                     login: $("#nameFormInput").val(),
                     password: $("#passwordFormInput").val(),
                 };
                 // check for not empty data
                 if (!data.login || !data.password) {
-                    alert("Name and password are required.");
+                    document.querySelector("#alertMessage").classList.add("visibl");
+                    $("#alertMessage").text('Name and password are required.');
                     return;
                 }
                 $.ajax({
@@ -96,14 +103,17 @@
                     login: $("#nameFormInput").val(),
                     password: $("#passwordFormInput").val()
                 };
+                $("#alertMessage").removeClass('visibl');
                 // check for not empty data
-                if (!data.login || !data.password) {
-                    alert("Name and password are required.");
+                if (!newUser.login || !newUser.password) {
+                    $("#alertMessage").addClass('visibl');
+                    $("#alertMessage").text('Name and password are required.');
                     return;
                 }
                 // check for valid password
                 if (newUser.password.length < 8) {
-                    alert("Password must be at least 6 characters long.");
+                    $("#alertMessage").addClass('visibl');
+                    $("#alertMessage").text('Password must be at least 6 characters long.');
                     return;
                 }
                 $.ajax({

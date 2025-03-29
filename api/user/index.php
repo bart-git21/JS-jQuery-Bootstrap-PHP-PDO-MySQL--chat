@@ -19,9 +19,9 @@ if (!$data) {
 header("Content-Type: application/json");
 
 switch ($requestMethod) {
+    // registration new user
     case "POST":
-        $json = file_get_contents("php://input");
-        // interface $user {
+        // interface $data {
         //     login: string,
         //     password: string,
         //     role: {
@@ -29,9 +29,8 @@ switch ($requestMethod) {
         //          default: "user",
         //     }
         // }
-
-        $userName = isset($user['login']) ? htmlspecialchars($user['login'], ENT_QUOTES, "UTF-8") : "";
-        $userPass = isset($user['password']) ? htmlspecialchars($user['password'], ENT_QUOTES, "UTF-8") : "";
+        $userName = isset($data['login']) ? htmlspecialchars($data['login'], ENT_QUOTES, "UTF-8") : "";
+        $userPass = isset($data['password']) ? htmlspecialchars($data['password'], ENT_QUOTES, "UTF-8") : "";
 
         // Check for not empty user
         if (empty($userName) || empty($userPass) || strlen($userPass) < 6) {

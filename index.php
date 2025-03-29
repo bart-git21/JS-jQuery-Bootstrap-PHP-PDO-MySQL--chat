@@ -62,6 +62,10 @@
 
     <script>
         $(document).ready(function () {
+            (function clearForm() {
+                $("#nameFormInput").val("");
+            })()
+
             $('form').on("submit", function () {
                 event.preventDefault();
                 const data = {
@@ -81,6 +85,7 @@
                     })
                     .fail((xhr, status, error) => { console.log(xhr.status) })
             })
+
             $("#signUpBtn").on("click", function () {
                 const newUser = {
                     login: $("#nameFormInput").val(),

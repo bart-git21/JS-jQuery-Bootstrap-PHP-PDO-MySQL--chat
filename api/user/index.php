@@ -20,6 +20,24 @@ switch ($requestMethod) {
 
         $userName = isset($user['login']) ? htmlspecialchars($user['login'], ENT_QUOTES, "UTF-8") : "";
         $userPass = isset($user['password']) ? htmlspecialchars($user['password'], ENT_QUOTES, "UTF-8") : "";
+
+        // Check for not empty user
+        if (empty($userName) || empty($userPass) || strlen($userPass) < 6) {
+            http_response_code(400);
+            echo json_encode(["error" => "Invalid input. Username and password are required, and password must be at least 6 characters."]);
+            exit;
+        }
+
+        // Check for duplicate user
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE login = :login");
+        $stmt->bindParam(":login", $userName);
+        $stmt->execute();
+        if ($stmt->fetchColumn() > 0) {
+            http_response_code(409);
+            echo json_encode(["error" => "User already exists."]);
+            exit;
+        }
+
         $hashedPassword = password_hash($userPass, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (login, password) VALUES (:userName, :pass)");
         $stmt->bindParam(":userName", $userName);

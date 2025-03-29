@@ -60,8 +60,6 @@ switch ($requestMethod) {
             http_response_code(500);
             return;
         }
-
-        $lastInsertedId = $conn->lastInsertId();
         http_response_code(201);
         break;
     default:

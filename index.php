@@ -72,6 +72,11 @@
                     login: $("#nameFormInput").val(),
                     password: $("#passwordFormInput").val(),
                 };
+                // check for not empty data
+                if (!data.login || !data.password) {
+                    alert("Name and password are required.");
+                    return;
+                }
                 $.ajax({
                     url: "/api/auth/",
                     method: "POST",
@@ -91,6 +96,16 @@
                     login: $("#nameFormInput").val(),
                     password: $("#passwordFormInput").val()
                 };
+                // check for not empty data
+                if (!data.login || !data.password) {
+                    alert("Name and password are required.");
+                    return;
+                }
+                // check for valid password
+                if (newUser.password.length < 8) {
+                    alert("Password must be at least 6 characters long.");
+                    return;
+                }
                 $.ajax({
                     url: "/api/user/",
                     method: "POST",
@@ -99,6 +114,8 @@
                 })
                     .done(response => {
                         console.log(response);
+                        // TO DO
+                        // after registration send authentication request
                     })
                     .fail((xhr, status, error) => {
                         console.log(xhr.status);

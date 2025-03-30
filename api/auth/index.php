@@ -29,8 +29,9 @@ try {
 
             $stmt = $conn->prepare("SELECT password FROM users WHERE login = ?");
             $stmt->execute([$userName]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo json_encode(["json" => $data, "user" => $user]);
+            $hashedPassword = $stmt->fetch(PDO::FETCH_ASSOC);
+            $isCorrectPassword = password_verify($userPassword, $hashedPassword["password"]);
+            echo json_encode(["password" => $hashedPassword]);
             break;
         default:
             echo http_response_code(405);

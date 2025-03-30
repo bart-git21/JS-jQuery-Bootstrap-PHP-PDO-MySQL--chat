@@ -13,6 +13,10 @@ try {
     switch ($requestMethod) {
         // authentication
         case "POST":
+            // interface incomingUserData {
+            //     login: string,
+            //     password: string,
+            // }
             $userName = isset($data["login"]) ? htmlspecialchars($data["login"], ENT_QUOTES, "UTF-8") : "";
             $userPassword = isset($data["password"]) ? htmlspecialchars($data["password"], ENT_QUOTES, "UTF-8") : "";
 

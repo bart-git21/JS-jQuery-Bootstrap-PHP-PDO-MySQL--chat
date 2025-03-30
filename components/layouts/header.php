@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/static/images/logo.png" alt=""></a>
+        <a class="navbar-brand" href="#"><img src="/php _ chat/static/images/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,11 +8,20 @@
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/php _ chat/">Home</a>
                 </li>
             </ul>
+
             <form class="d-flex">
-                <a class="nav-link active" aria-current="page" href="/pages/login.php">log in</a>
+                <?php
+                session_start();
+                if (isset($_SESSION['userName'])) {
+                    $name = $_SESSION['userName'];
+                    echo "<div class='notSelected'>$name</div>";
+                } else { ?>
+                    <a class="nav-link active" aria-current="page" href="/php _ chat/pages/login.php">log
+                        in</a>
+                <?php } ?>
             </form>
         </div>
     </div>

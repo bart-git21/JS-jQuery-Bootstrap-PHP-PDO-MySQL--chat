@@ -48,7 +48,7 @@ try {
                 session_start();
                 $_SESSION["userName"] = $userName;
                 $_SESSION["userId"] = $user["id"];
-                echo json_encode(["user" => $user]);
+                echo json_encode(["userId" => $user["id"]]);
             }
             break;
         default:

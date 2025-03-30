@@ -27,25 +27,28 @@ try {
                 exit;
             }
 
-            $stmt = $conn->prepare("SELECT password FROM users WHERE login = ?");
+            $stmt = $conn->prepare("SELECT password, id FROM users WHERE login = ?");
             $stmt->execute([$userName]);
-            $hashedPassword = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
             // check for existing user
-            if (!$hashedPassword) {
+            if (!$user) {
                 http_response_code(401);
                 echo json_encode(["error" => "Invalid name or password."]);
                 exit;
             } 
 
             // check for correct password
-            $isCorrectPassword = password_verify($userPassword, $hashedPassword["password"]);
+            $isCorrectPassword = password_verify($userPassword, $user["password"]);
             if (!$isCorrectPassword) {
                 http_response_code(401);
                 echo json_encode(["error" => "Invalid name or password."]);
                 exit;
             } else {
-                echo json_encode(["password" => $hashedPassword]);
+                session_start();
+                $_SESSION["userName"] = $userName;
+                $_SESSION["userId"] = $userId;
+                echo json_encode(["user" => $user]);
             }
             break;
         default:

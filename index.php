@@ -73,8 +73,8 @@
                 event.preventDefault();
                 $("#alertMessage").removeClass('visibl');
                 const data = {
-                    login: $("#nameFormInput").val(),
-                    password: $("#passwordFormInput").val(),
+                    login: $("#nameFormInput").val().trim(),
+                    password: $("#passwordFormInput").val().trim(),
                 };
                 // check for not empty data
                 if (!data.login || !data.password) {
@@ -102,8 +102,8 @@
 
             $("#signUpBtn").on("click", function () {
                 const newUser = {
-                    login: $("#nameFormInput").val(),
-                    password: $("#passwordFormInput").val()
+                    login: $("#nameFormInput").val().trim(),
+                    password: $("#passwordFormInput").val().trim()
                 };
                 $("#alertMessage").removeClass('visibl');
                 // check for not empty data

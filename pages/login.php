@@ -90,7 +90,13 @@
                     },
                     data: JSON.stringify(data),
                 })
-                    .done(() => location.href = "../index.php")
+                    .done(() => 
+                    // interface responseData {
+                    //     userName: string,
+                    //     userId: string
+                    // }
+                    location.href = "../index.php"
+                )
                     .fail((xhr, status, error) => {
                         console.log(xhr.status);
                         $("#alertMessage").addClass('visibl');

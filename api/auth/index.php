@@ -30,8 +30,16 @@ try {
             $stmt = $conn->prepare("SELECT password FROM users WHERE login = ?");
             $stmt->execute([$userName]);
             $hashedPassword = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // check for correct password
             $isCorrectPassword = password_verify($userPassword, $hashedPassword["password"]);
-            echo json_encode(["password" => $hashedPassword]);
+            if (!$isCorrectPassword) {
+                http_response_code(401);
+                echo json_encode(["error" => "Invalid name or password."]);
+                exit;
+            } else {
+                echo json_encode(["password" => $hashedPassword]);
+            }
             break;
         default:
             echo http_response_code(405);

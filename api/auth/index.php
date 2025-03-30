@@ -20,6 +20,13 @@ try {
             $userName = isset($data["login"]) ? htmlspecialchars($data["login"], ENT_QUOTES, "UTF-8") : "";
             $userPassword = isset($data["password"]) ? htmlspecialchars($data["password"], ENT_QUOTES, "UTF-8") : "";
 
+            // Check for not empty incoming data
+            if (empty($userName) && empty($userPassword)) {
+                http_response_code(400);
+                echo json_encode(["error" => "Invalid input data. Name or password are required."]);
+                exit;
+            }
+
             $stmt = $conn->prepare("SELECT password FROM users WHERE login = ?");
             $stmt->execute([$userName]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);

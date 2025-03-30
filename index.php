@@ -95,7 +95,11 @@
                     .done(response => {
                         console.log(response);
                     })
-                    .fail((xhr, status, error) => { console.log(xhr.status) })
+                    .fail((xhr, status, error) => {
+                        console.log(xhr.status);
+                        $("#alertMessage").addClass('visibl');
+                        xhr.responseJSON.error && $("#alertMessage").text(xhr.responseJSON.error);
+                    })
             })
 
             $("#signUpBtn").on("click", function () {
@@ -111,7 +115,7 @@
                     return;
                 }
                 // check for valid password
-                if (newUser.password.length < 8) {
+                if (newUser.password.length < 6) {
                     $("#alertMessage").addClass('visibl');
                     $("#alertMessage").text('Password must be at least 6 characters long.');
                     return;
@@ -129,7 +133,8 @@
                     })
                     .fail((xhr, status, error) => {
                         console.log(xhr.status);
-                        xhr.responseJSON.error && console.log(xhr.responseJSON.error);
+                        $("#alertMessage").addClass('visibl');
+                        xhr.responseJSON.error && $("#alertMessage").text(xhr.responseJSON.error);
                     })
             })
         })

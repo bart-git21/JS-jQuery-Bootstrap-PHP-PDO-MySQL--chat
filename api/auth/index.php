@@ -1,7 +1,9 @@
 <?php
 include "../db/connection.php";
 try {
+    // Get the request method
     $requestMethod = $_SERVER['REQUEST_METHOD'];
+
     $data = json_decode(file_get_contents("php://input"), true);
     if (!$data) {
         http_response_code(400);
@@ -36,7 +38,7 @@ try {
                 http_response_code(401);
                 echo json_encode(["error" => "Invalid name or password."]);
                 exit;
-            } 
+            }
 
             // check for correct password
             $isCorrectPassword = password_verify($userPassword, $user["password"]);
@@ -51,6 +53,30 @@ try {
                 echo json_encode(["userId" => $user["id"]]);
             }
             break;
+
+        case "DELETE":
+            // log out
+            session_start();
+            unset($_SESSION['userName']);
+            unset($_SESSION['userId']);
+            $_SESSION = []; 
+
+            if (ini_get("session.use_cookies")) {
+                $params = session_get_cookie_params();
+                setcookie(
+                    session_name(),
+                    '',
+                    time() - 42000,
+                    $params["path"],
+                    $params["domain"],
+                    $params["secure"],
+                    $params["httponly"]
+                );
+            }
+            session_destroy();
+            http_response_code(204);
+            break;
+            
         default:
             echo http_response_code(405);
             echo json_encode(["error" => "Method Not Allowed"]);

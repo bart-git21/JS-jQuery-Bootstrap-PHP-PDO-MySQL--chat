@@ -33,7 +33,7 @@
             <div class="w-400 h-100 d-flex align-items-center">
                 <form class="w-100 p-5 rounded shadow">
                     <div class="mb-3 d-flex justify-content-center">
-                        <img class="w-25" src="/projects/php/php _ chat/static/images/person.png" alt="">
+                        <img class="w-25" src="./static/images/person.png" alt="">
                     </div>
                     <div class="mb-3">
                         <label for="nameFormInput" class="form-label">User name</label>

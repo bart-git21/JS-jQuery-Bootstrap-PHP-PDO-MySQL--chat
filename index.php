@@ -43,9 +43,7 @@
                         <label for="passwordFormInput" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordFormInput">
                     </div>
-                    <div id="alertMessage" class="alert alert-warning invisibl" role="alert">
-                        A simple warning alert—check it out!
-                    </div>
+                    <div id="alertMessage" class="alert alert-warning invisibl" role="alert"></div>
                     <div class="d-flex justify-content-between">
                         <div>
                             <small>New user?</small>

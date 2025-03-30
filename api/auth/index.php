@@ -31,6 +31,13 @@ try {
             $stmt->execute([$userName]);
             $hashedPassword = $stmt->fetch(PDO::FETCH_ASSOC);
             
+            // check for existing user
+            if (!$hashedPassword) {
+                http_response_code(401);
+                echo json_encode(["error" => "Invalid name or password."]);
+                exit;
+            } 
+
             // check for correct password
             $isCorrectPassword = password_verify($userPassword, $hashedPassword["password"]);
             if (!$isCorrectPassword) {

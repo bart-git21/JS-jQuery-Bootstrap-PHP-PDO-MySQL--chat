@@ -12,7 +12,7 @@
                 </li>
             </ul>
 
-            <form id="loggedUserForm" class="d-flex"></form>
+            <form id="profileForm" class="d-flex"></form>
         </div>
     </div>
 </nav>
@@ -28,14 +28,14 @@
                 const html = `
                     <div class='me-3 d-flex align-items-center notSelected'><img class='me-2 h-30' src='/static/images/person.png'>${user.name}</div><button id='logoutBtn' type='button' class='btn btn-outline-info'>Log out</button>
                 `
-                $("#loggedUserForm").html(html);
+                $("#profileForm").html(html);
             } else {
                 const html = `
                     <a class="nav-link active" aria-current="page" href="/pages/login.php"><button
                             type="button" class="btn btn-outline-primary">log in</button>
                     </a>
                 `
-                $("#loggedUserForm").html(html);
+                $("#profileForm").html(html);
             }
         }
         getUser();

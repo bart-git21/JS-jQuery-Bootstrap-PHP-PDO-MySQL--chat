@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/static/images/logo.png" alt=""></a>
+        <a class="navbar-brand" href="#"><img src="t/static/images/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="t/">Home</a>
                 </li>
             </ul>
 
@@ -24,19 +24,14 @@
                 name: localStorage.getItem('userName'),
                 id: localStorage.getItem('userId')
             };
-            if (user.id) {
-                const html = `
-                    <div class='me-3 d-flex align-items-center notSelected'><img class='me-2 h-30' src='/static/images/person.png'>${user.name}</div><button id='logoutBtn' type='button' class='btn btn-outline-info'>Log out</button>
-                `
-                $("#profileForm").html(html);
-            } else {
-                const html = `
-                    <a class="nav-link active" aria-current="page" href="/pages/login.php"><button
+            const html = (user.id) ? `
+                    <div class='me-3 d-flex align-items-center notSelected'><img class='me-2 h-30' src='t/static/images/person.png'>${user.name}</div><button id='logoutBtn' type='button' class='btn btn-outline-info'>Log out</button>
+                ` : `
+                    <a class="nav-link active" aria-current="page" href="t/pages/login.php"><button
                             type="button" class="btn btn-outline-primary">log in</button>
                     </a>
-                `
-                $("#profileForm").html(html);
-            }
+                `;
+            $("#profileForm").html(html);
         }
         getUser();
         $('#logoutBtn').click(function (event) {

@@ -12,38 +12,33 @@
                 </li>
             </ul>
 
-            <form class="d-flex">
-                <?php
-                session_start();
-                if (isset($_SESSION['userName'])) {
-                    $name = $_SESSION['userName'];
-                    echo "<div class='me-3 d-flex align-items-center notSelected'><img class='me-2 h-30' src='/static/images/person.png'>$name</div><button id='logoutBtn' type='button' class='btn btn-outline-info'>Log out</button>";
-                } else {
-                    if (ini_get("session.use_cookies")) {
-                        $params = session_get_cookie_params();
-                        setcookie(
-                            session_name(),
-                            '',
-                            time() - 42000,
-                            $params["path"],
-                            $params["domain"],
-                            $params["secure"],
-                            $params["httponly"]
-                        );
-                    }
-                    session_destroy();
-                    ?>
-                    <a class="nav-link active" aria-current="page" href="/pages/login.php"><button
-                            type="button" class="btn btn-outline-primary">log in</button>
-                    </a>
-                <?php } ?>
-            </form>
+            <form id="loggedUserForm" class="d-flex"></form>
         </div>
     </div>
 </nav>
 
 <script>
     $(document).ready(function () {
+        function getUser() {
+            const user = {
+                name: localStorage.getItem('userName'),
+                id: localStorage.getItem('userId')
+            };
+            if (user.id) {
+                const html = `
+                    <div class='me-3 d-flex align-items-center notSelected'><img class='me-2 h-30' src='/static/images/person.png'>${user.name}</div><button id='logoutBtn' type='button' class='btn btn-outline-info'>Log out</button>
+                `
+                $("#loggedUserForm").html(html);
+            } else {
+                const html = `
+                    <a class="nav-link active" aria-current="page" href="/pages/login.php"><button
+                            type="button" class="btn btn-outline-primary">log in</button>
+                    </a>
+                `
+                $("#loggedUserForm").html(html);
+            }
+        }
+        getUser();
         $('#logoutBtn').click(function (event) {
             event.preventDefault();
             const data = {
